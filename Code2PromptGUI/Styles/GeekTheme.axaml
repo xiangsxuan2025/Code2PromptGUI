@@ -161,4 +161,8 @@
 		<Setter Property="FontWeight" Value="Bold"/>
 	</Style>
 
+	<Style Selector="TextBlock.tool-status">
+		<Setter Property="Foreground" Value="#00ccff"/>
+		<Setter Property="FontSize" Value="11"/>
+	</Style>
 </Styles>

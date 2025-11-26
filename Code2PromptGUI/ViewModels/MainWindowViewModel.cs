@@ -25,7 +25,7 @@ namespace Code2PromptGUI.ViewModels
         private string _path = ".";
 
         [ObservableProperty]
-        private string _outputFile = "";
+        private string _outputFileName = "";
 
         [ObservableProperty]
         private bool _clipboard = true;
@@ -96,6 +96,9 @@ namespace Code2PromptGUI.ViewModels
         [ObservableProperty]
         private string _tokenInfo = "";
 
+        [ObservableProperty]
+        private string _toolStatus = "🔧 Tool: Ready";
+
         public ObservableCollection<string> OutputFormats { get; } = new()
         {
             "markdown", "json", "xml"
@@ -117,6 +120,8 @@ namespace Code2PromptGUI.ViewModels
             _processRunner.OutputReceived += OnOutputReceived;
             _processRunner.ErrorReceived += OnErrorReceived;
             _processRunner.ProcessExited += OnProcessExited;
+
+            CheckToolAvailability();
         }
 
         // 设置主窗口引用
@@ -139,7 +144,7 @@ namespace Code2PromptGUI.ViewModels
             try
             {
                 var arguments = BuildArguments();
-                await _processRunner.RunProcessAsync("code2prompt", arguments);
+                await _processRunner.RunProcessAsync(arguments);
             }
             catch (Exception ex)
             {
@@ -165,7 +170,7 @@ namespace Code2PromptGUI.ViewModels
             var file = await SaveFileAsync("Prompt output", new[] { "*.md", "*.txt", "*" });
             if (file != null)
             {
-                OutputFile = file;
+                OutputFileName = file;
             }
         }
 
@@ -237,15 +242,17 @@ namespace Code2PromptGUI.ViewModels
 
             // 基本路径
             if (!string.IsNullOrEmpty(Path) && Path != ".")
-                args.Append($" \"{Path}\"");
+                args.Append($" {Path}");
 
-            // 输出文件
-            if (!string.IsNullOrEmpty(OutputFile))
-                args.Append($" -O \"{OutputFile}\"");
+            // 暂时改为默认输出, 不加貌似会报错.
+            //// 输出文件
+            //if (!string.IsNullOrEmpty(OutputFile))
+            args.Append($" -O {OutputFileName}");
 
+            // 默认拷贝, 加这个参数会不明原因报错
             // 剪贴板
-            if (Clipboard)
-                args.Append(" -c");
+            //if (Clipboard)
+            //    args.Append(" -c");
 
             // 包含模式
             if (!string.IsNullOrEmpty(IncludePatterns))
@@ -253,7 +260,7 @@ namespace Code2PromptGUI.ViewModels
                 foreach (var pattern in IncludePatterns.Split(new[] { '\n', '\r', ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (!string.IsNullOrWhiteSpace(pattern))
-                        args.Append($" -i \"{pattern.Trim()}\"");
+                        args.Append($" -i {pattern.Trim()}");// 不需要用括号包起来
                 }
             }
 
@@ -263,7 +270,7 @@ namespace Code2PromptGUI.ViewModels
                 foreach (var pattern in ExcludePatterns.Split(new[] { '\n', '\r', ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (!string.IsNullOrWhiteSpace(pattern))
-                        args.Append($" -e \"{pattern.Trim()}\"");
+                        args.Append($" -e {pattern.Trim()}");// 不需要用括号包起来
                 }
             }
 
@@ -283,7 +290,7 @@ namespace Code2PromptGUI.ViewModels
 
             // 模板
             if (!string.IsNullOrEmpty(Template))
-                args.Append($" -t \"{Template}\"");
+                args.Append($" -t {Template}"); // 不需要用括号包起来
 
             // 显示选项
             if (LineNumbers)
@@ -423,6 +430,23 @@ namespace Code2PromptGUI.ViewModels
         private IStorageProvider? GetStorageProvider()
         {
             return TopLevel.GetTopLevel(_mainWindow)?.StorageProvider;
+        }
+
+        private void CheckToolAvailability()
+        {
+            var processRunner = new ProcessRunner();
+            // 如果工具路径存在，则显示可用状态
+            var toolPath = processRunner.GetType().GetField("_toolPath",
+                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.GetValue(processRunner) as string;
+
+            if (!string.IsNullOrEmpty(toolPath) && File.Exists(toolPath))
+            {
+                ToolStatus = "🔧 Tool: Available";
+            }
+            else
+            {
+                ToolStatus = "🔧 Tool: Not Found";
+            }
         }
     }
 }
