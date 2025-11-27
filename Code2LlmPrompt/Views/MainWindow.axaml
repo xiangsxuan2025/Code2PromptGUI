@@ -23,65 +23,11 @@ SystemDecorations="None"
 
 	<DockPanel>
 		<!-- 自定义标题栏 -->
-		<Border DockPanel.Dock="Top" Height="30" Background="#1a1a2e" BorderThickness="0,0,0,1" BorderBrush="#00ff41">
-			<Grid>
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="*" />
-					<ColumnDefinition Width="Auto" />
-				</Grid.ColumnDefinitions>
+		<controls:CustomTitleBar DockPanel.Dock="Top" />
 
-				<!-- 标题和拖动区域 -->
-				<TextBlock
-				Grid.Column="0"
-				Text="🚀 Code2Prompt GUI"
-				Foreground="#00ff41"
-				FontSize="12"
-				FontWeight="Bold"
-				VerticalAlignment="Center"
-				HorizontalAlignment="Left"
-				Margin="10,0,0,0"
-				/>
-
-				<!-- 窗口控制按钮 -->
-				<StackPanel Grid.Column="1" Orientation="Horizontal">
-					<Button
-					Content="─"
-					Width="40"
-					Height="30"
-					Background="Transparent"
-					Foreground="#cccccc"
-					BorderThickness="0"
-					FontSize="12"
-					Click="MinimizeClick"
-					Classes="titlebar-btn"
-					/>
-					<Button
-					Content="❐"
-					Width="40"
-					Height="30"
-					Background="Transparent"
-					Foreground="#cccccc"
-					BorderThickness="0"
-					FontSize="10"
-					Click="MaximizeClick"
-					Classes="titlebar-btn"
-					/>
-					<Button
-					Content="✕"
-					Width="40"
-					Height="30"
-					Background="Transparent"
-					Foreground="#cccccc"
-					BorderThickness="0"
-					FontSize="12"
-					Click="CloseClick"
-					Classes="titlebar-btn close-btn"
-					/>
-				</StackPanel>
-			</Grid>
-		</Border>
-
+		<!-- 状态栏 -->
 		<controls:StatusBarControl DockPanel.Dock="Bottom" />
+
 		<!-- 主内容区域 -->
 		<Grid Margin="8">
 			<Grid.ColumnDefinitions>

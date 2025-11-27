@@ -237,8 +237,21 @@
 		<Setter Property="Background" Value="#CC1a1a2e"/>
 	</Style>
 
-	<Style Selector="BlurEffect.progress-blur">
-		<Setter Property="Radius" Value="8"/>
+	<!-- 自定义标题栏按钮样式 -->
+	<Style Selector="Button.titlebar-btn">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="#cccccc"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Cursor" Value="Hand"/>
+	</Style>
+
+	<Style Selector="Button.titlebar-btn:pointerover">
+		<Setter Property="Background" Value="#333344"/>
+	</Style>
+
+	<Style Selector="Button.titlebar-btn.close-btn:pointerover">
+		<Setter Property="Background" Value="#e81123"/>
+		<Setter Property="Foreground" Value="#ffffff"/>
 	</Style>
 
 	<!-- 自定义标题栏按钮样式 -->
@@ -256,5 +269,13 @@
 	<Style Selector="Button.titlebar-btn.close-btn:pointerover">
 		<Setter Property="Background" Value="#e81123"/>
 		<Setter Property="Foreground" Value="#ffffff"/>
+	</Style>
+	<!-- 确保布局稳定的样式 -->
+	<Style Selector="ScrollViewer">
+		<Setter Property="HorizontalScrollBarVisibility" Value="Disabled"/>
+	</Style>
+
+	<Style Selector="StackPanel">
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
 	</Style>
 </Styles>

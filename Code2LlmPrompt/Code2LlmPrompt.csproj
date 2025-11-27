@@ -35,6 +35,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\Controls\CustomTitleBar.axaml.cs">
+	    <DependentUpon>CustomTitleBar.axaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Controls\BasicSettingsControl.axaml.cs">
 	    <DependentUpon>BasicSettingsControl.axaml</DependentUpon>
 	  </Compile>
