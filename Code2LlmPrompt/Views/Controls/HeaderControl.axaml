@@ -1,19 +1,19 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
-			 x:Class="Code2LlmPrompt.Views.Controls.HeaderControl"
-			 x:DataType="vm:MainViewModel">
-	<Border DockPanel.Dock="Top" Classes="header" Height="80">
-		<Grid>
-			<TextBlock
-			Text="🚀 Code 2 LLM Prompt"
-			FontSize="28"
-			FontWeight="Bold"
-			VerticalAlignment="Center"
-			HorizontalAlignment="Center"
-			Classes="title"
-			TextAlignment="Center"
-			/>
-		</Grid>
-	</Border>
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.HeaderControl"
+             x:DataType="vm:MainViewModel">
+    <Border DockPanel.Dock="Top" Classes="header" Height="60">
+        <Grid>
+            <TextBlock
+                Text="🚀 Code 2 LLM Prompt"
+                FontSize="22"
+                FontWeight="Bold"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Classes="title"
+                TextAlignment="Center"
+            />
+        </Grid>
+    </Border>
 </UserControl>

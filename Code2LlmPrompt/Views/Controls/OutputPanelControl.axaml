@@ -3,51 +3,44 @@
 			 xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
 			 x:Class="Code2LlmPrompt.Views.Controls.OutputPanelControl"
 			 x:DataType="vm:MainViewModel">
-	<Grid RowDefinitions="Auto,180">
+	<Grid RowDefinitions="Auto,150">
 		<!-- Output Controls -->
 		<StackPanel
 		Grid.Row="0"
 		Orientation="Horizontal"
-		Spacing="8"
-		Margin="0,0,0,8"
+		Spacing="6"
+		Margin="0,0,0,5"
 		>
 			<Button
 			Content="🚀 Generate"
 			Command="{Binding GenerateCommand}"
 			Classes="primary-btn"
-			Width="120"
-			Height="32"
+			Width="100"
+			Height="28"
 			/>
 			<Button
 			Content="📋 Copy"
 			Command="{Binding CopyOutputCommand}"
 			Classes="secondary-btn"
 			IsEnabled="{Binding HasOutput}"
-			Width="80"
-			Height="32"
+			Width="70"
+			Height="28"
 			/>
 			<Button
 			Content="💾 Save"
 			Command="{Binding SaveOutputCommand}"
 			Classes="secondary-btn"
 			IsEnabled="{Binding HasOutput}"
-			Width="80"
-			Height="32"
+			Width="70"
+			Height="28"
 			/>
 			<Button
 			Content="🔄 Clear"
 			Command="{Binding ClearOutputCommand}"
 			Classes="secondary-btn"
 			IsEnabled="{Binding HasOutput}"
-			Width="80"
-			Height="32"
-			/>
-
-			<TextBlock
-			Text="{Binding TokenInfo}"
-			VerticalAlignment="Center"
-			Classes="token-info"
-			Margin="10,0,0,0"
+			Width="70"
+			Height="28"
 			/>
 		</StackPanel>
 
@@ -62,7 +55,7 @@
 				TextWrapping="Wrap"
 				Classes="output-text"
 				FontFamily="Consolas, Menlo, Monaco, Courier New"
-				FontSize="11"
+				FontSize="10"
 				/>
 			</ScrollViewer>
 		</Border>
