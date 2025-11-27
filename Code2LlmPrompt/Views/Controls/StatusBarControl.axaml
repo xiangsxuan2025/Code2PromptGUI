@@ -1,0 +1,41 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.StatusBarControl"
+             x:DataType="vm:MainViewModel">
+    <Border DockPanel.Dock="Bottom" Background="#1a1a2e" BorderThickness="0,1,0,0" BorderBrush="#333344">
+        <Grid Margin="10,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!-- Status -->
+            <TextBlock
+                Grid.Column="0"
+                Text="{Binding Status}"
+                VerticalAlignment="Center"
+                Classes="status"
+            />
+
+            <!-- Tool Status -->
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding ToolStatus}"
+                VerticalAlignment="Center"
+                Classes="tool-status"
+                Margin="20,0,0,0"
+            />
+
+            <!-- Token Info -->
+            <TextBlock
+                Grid.Column="2"
+                Text="{Binding TokenInfo}"
+                VerticalAlignment="Center"
+                Classes="token-info"
+                Margin="20,0,0,0"
+            />
+        </Grid>
+    </Border>
+</UserControl>

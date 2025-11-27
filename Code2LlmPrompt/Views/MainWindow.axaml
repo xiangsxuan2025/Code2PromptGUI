@@ -20,8 +20,11 @@ Name="MainWindowControl"
 	</Window.Styles>
 
 	<DockPanel>
-		<!-- Header - 始终显示，不模糊 -->
+		<!-- Header - 顶部标题栏 -->
 		<controls:HeaderControl DockPanel.Dock="Top" />
+
+		<!-- Status Bar - 底部状态栏 -->
+		<controls:StatusBarControl DockPanel.Dock="Bottom" />
 
 		<!-- 主内容区域 -->
 		<Grid Margin="10">

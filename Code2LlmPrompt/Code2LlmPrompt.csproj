@@ -53,6 +53,9 @@
 	  <Compile Update="Views\Controls\HeaderControl.axaml.cs">
 	    <DependentUpon>HeaderControl.axaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\Controls\StatusBarControl.axaml.cs">
+	    <DependentUpon>StatusBarControl.axaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\Controls\TokenSettingsControl.axaml.cs">
 	    <DependentUpon>TokenSettingsControl.axaml</DependentUpon>
 	  </Compile>
