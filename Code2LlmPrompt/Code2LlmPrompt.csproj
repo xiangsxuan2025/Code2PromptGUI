@@ -33,4 +33,31 @@
 		<PackageReference Include="Avalonia.X11" Version="11.3.8" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Views\Controls\BasicSettingsControl.axaml.cs">
+	    <DependentUpon>BasicSettingsControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\FileSelectionControl.axaml.cs">
+	    <DependentUpon>FileSelectionControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\ProgressIndicatorControl.axaml.cs">
+	    <DependentUpon>ProgressIndicatorControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\OutputFormatControl.axaml.cs">
+	    <DependentUpon>OutputFormatControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\GitIntegrationControl.axaml.cs">
+	    <DependentUpon>GitIntegrationControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\OutputPanelControl.axaml.cs">
+	    <DependentUpon>OutputPanelControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\HeaderControl.axaml.cs">
+	    <DependentUpon>HeaderControl.axaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Controls\TokenSettingsControl.axaml.cs">
+	    <DependentUpon>TokenSettingsControl.axaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
 </Project>

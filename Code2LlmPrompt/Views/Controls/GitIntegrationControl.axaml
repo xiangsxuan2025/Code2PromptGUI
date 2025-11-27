@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.GitIntegrationControl"
+             x:DataType="vm:MainViewModel">
+    <Border Classes="section">
+        <StackPanel Spacing="10">
+            <TextBlock Text="🔀 Git Integration" Classes="section-title" />
+
+            <CheckBox
+                Content="Include Git Diff"
+                IsChecked="{Binding Diff}"
+                Classes="checkbox"
+            />
+
+            <StackPanel Spacing="8" IsVisible="{Binding Diff}">
+                <TextBlock Text="Diff Branches" Classes="label" />
+                <TextBox
+                    Text="{Binding GitDiffBranches}"
+                    Watermark="main,develop"
+                    Classes="input"
+                />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Log Branches" Classes="label" />
+                <TextBox
+                    Text="{Binding GitLogBranches}"
+                    Watermark="main,develop"
+                    Classes="input"
+                />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+			 x:Class="Code2LlmPrompt.Views.Controls.TokenSettingsControl"
+			 x:DataType="vm:MainViewModel">
+	<Border Classes="section">
+		<StackPanel Spacing="10">
+			<TextBlock Text="🔢 Token Settings" Classes="section-title" />
+
+			<StackPanel Spacing="8">
+				<TextBlock Text="Encoding" Classes="label" />
+				<ComboBox
+				ItemsSource="{Binding Encodings}"
+				SelectedItem="{Binding Encoding}"
+				Classes="combo"
+				/>
+			</StackPanel>
+
+			<StackPanel Spacing="8">
+				<TextBlock Text="Token Format" Classes="label" />
+				<ComboBox
+				ItemsSource="{Binding TokenFormats}"
+				SelectedItem="{Binding TokenFormat}"
+				Classes="combo"
+				/>
+			</StackPanel>
+
+			<StackPanel Spacing="5">
+				<CheckBox
+				Content="Show Token Map"
+				IsChecked="{Binding TokenMap}"
+				Classes="checkbox"
+				/>
+				<CheckBox Content="Quiet Mode" IsChecked="{Binding Quiet}" Classes="checkbox" />
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

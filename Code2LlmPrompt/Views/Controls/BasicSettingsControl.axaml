@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+			 x:Class="Code2LlmPrompt.Views.Controls.BasicSettingsControl"
+			 x:DataType="vm:MainViewModel">
+	<Border Classes="section">
+		<StackPanel Spacing="10">
+			<TextBlock Text="📁 Basic Settings" Classes="section-title" />
+
+			<StackPanel Spacing="8">
+				<TextBlock Text="Path to Analyze" Classes="label" />
+				<Grid ColumnDefinitions="*,Auto">
+					<TextBox
+					Text="{Binding Path}"
+					Watermark=". (current directory)"
+					Classes="input"
+					/>
+					<Button
+					Content="📁"
+					Grid.Column="1"
+					Margin="5,0,0,0"
+					Command="{Binding BrowsePathCommand}"
+					Classes="icon-btn"
+					/>
+				</Grid>
+			</StackPanel>
+
+			<StackPanel Spacing="8">
+				<TextBlock Text="Output File" Classes="label" />
+				<Grid ColumnDefinitions="*,Auto">
+					<TextBox
+					Text="{Binding OutputFileName}"
+					Watermark="- (stdout)"
+					Classes="input"
+					/>
+					<Button
+					Content="💾"
+					Grid.Column="1"
+					Margin="5,0,0,0"
+					Command="{Binding BrowseOutputCommand}"
+					Classes="icon-btn"
+					/>
+				</Grid>
+				<!-- 不明原因, 选上就报错 多个参数 -c
+				<CheckBox Content="Copy to Clipboard" IsChecked="{Binding Clipboard}"
+				Classes="checkbox"/>-->
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</UserControl>

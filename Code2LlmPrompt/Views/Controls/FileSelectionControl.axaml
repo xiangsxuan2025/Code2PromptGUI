@@ -1,0 +1,49 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.FileSelectionControl"
+             x:DataType="vm:MainViewModel">
+    <Border Classes="section">
+        <StackPanel Spacing="10">
+            <TextBlock Text="🔍 File Selection" Classes="section-title" />
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Include Patterns" Classes="label" />
+                <TextBox
+                    Text="{Binding IncludePatterns}"
+                    Watermark="*.rs,*.toml"
+                    AcceptsReturn="True"
+                    Classes="input"
+                />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Exclude Patterns" Classes="label" />
+                <TextBox
+                    Text="{Binding ExcludePatterns}"
+                    Watermark="target/**,*.log"
+                    AcceptsReturn="True"
+                    Classes="input"
+                />
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <CheckBox
+                    Content="Follow Symlinks"
+                    IsChecked="{Binding FollowSymlinks}"
+                    Classes="checkbox"
+                />
+                <CheckBox
+                    Content="Include Hidden Files"
+                    IsChecked="{Binding Hidden}"
+                    Classes="checkbox"
+                />
+                <CheckBox
+                    Content="Skip .gitignore"
+                    IsChecked="{Binding NoIgnore}"
+                    Classes="checkbox"
+                />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

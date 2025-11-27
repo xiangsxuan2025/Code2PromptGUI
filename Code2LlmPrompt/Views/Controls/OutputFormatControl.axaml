@@ -1,0 +1,61 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.OutputFormatControl"
+             x:DataType="vm:MainViewModel">
+    <Border Classes="section">
+        <StackPanel Spacing="10">
+            <TextBlock Text="📄 Output Format" Classes="section-title" />
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Format" Classes="label" />
+                <ComboBox
+                    ItemsSource="{Binding OutputFormats}"
+                    SelectedItem="{Binding OutputFormat}"
+                    Classes="combo"
+                />
+            </StackPanel>
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Template" Classes="label" />
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBox
+                        Text="{Binding Template}"
+                        Watermark="Custom template path"
+                        Classes="input"
+                    />
+                    <Button
+                        Content="📄"
+                        Grid.Column="1"
+                        Margin="5,0,0,0"
+                        Command="{Binding BrowseTemplateCommand}"
+                        Classes="icon-btn"
+                    />
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Spacing="5">
+                <CheckBox
+                    Content="Line Numbers"
+                    IsChecked="{Binding LineNumbers}"
+                    Classes="checkbox"
+                />
+                <CheckBox
+                    Content="Absolute Paths"
+                    IsChecked="{Binding AbsolutePaths}"
+                    Classes="checkbox"
+                />
+                <CheckBox
+                    Content="No Code Blocks"
+                    IsChecked="{Binding NoCodeblock}"
+                    Classes="checkbox"
+                />
+                <CheckBox
+                    Content="Full Directory Tree"
+                    IsChecked="{Binding FullDirectoryTree}"
+                    Classes="checkbox"
+                />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</UserControl>

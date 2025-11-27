@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
+             x:Class="Code2LlmPrompt.Views.Controls.OutputPanelControl"
+             x:DataType="vm:MainViewModel">
+    <Grid RowDefinitions="Auto,*">
+        <!-- Output Controls -->
+        <StackPanel
+            Grid.Row="0"
+            Orientation="Horizontal"
+            Spacing="10"
+            Margin="0,0,0,15"
+        >
+            <Button
+                Content="🚀 Generate Prompt"
+                Command="{Binding GenerateCommand}"
+                Classes="primary-btn"
+                Width="150"
+            />
+            <Button
+                Content="📋 Copy Output"
+                Command="{Binding CopyOutputCommand}"
+                Classes="secondary-btn"
+                IsEnabled="{Binding HasOutput}"
+            />
+            <Button
+                Content="💾 Save As..."
+                Command="{Binding SaveOutputCommand}"
+                Classes="secondary-btn"
+                IsEnabled="{Binding HasOutput}"
+            />
+            <Button
+                Content="🔄 Clear"
+                Command="{Binding ClearOutputCommand}"
+                Classes="secondary-btn"
+                IsEnabled="{Binding HasOutput}"
+            />
+
+            <TextBlock
+                Text="{Binding TokenInfo}"
+                VerticalAlignment="Center"
+                Classes="token-info"
+                Margin="20,0,0,0"
+            />
+        </StackPanel>
+
+        <!-- Output Text Area -->
+        <Border Grid.Row="1" Classes="output-border">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBox
+                    Text="{Binding Output}"
+                    IsReadOnly="True"
+                    AcceptsReturn="True"
+                    AcceptsTab="True"
+                    TextWrapping="Wrap"
+                    Classes="output-text"
+                    FontFamily="Consolas, Menlo, Monaco, Courier New"
+                />
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</UserControl>
