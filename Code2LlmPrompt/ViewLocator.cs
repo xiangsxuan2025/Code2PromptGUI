@@ -2,9 +2,9 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using Code2PromptGUI.ViewModels;
+using Code2LlmPrompt.ViewModels;
 
-namespace Code2PromptGUI
+namespace Code2LlmPrompt
 {
     /// <summary>
     /// Given a view model, returns the corresponding view if possible.

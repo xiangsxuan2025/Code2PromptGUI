@@ -4,11 +4,11 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
 using Avalonia.Themes.Fluent;
-using Code2PromptGUI.ViewModels;
-using Code2PromptGUI.Views;
+using Code2LlmPrompt.ViewModels;
+using Code2LlmPrompt.Views;
 using System.Linq;
 
-namespace Code2PromptGUI
+namespace Code2LlmPrompt
 {
     public partial class App : Application
     {

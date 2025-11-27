@@ -1,7 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
-using Code2PromptGUI.Models;
+using Code2LlmPrompt.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System;
@@ -11,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Code2PromptGUI.ViewModels
+namespace Code2LlmPrompt.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {

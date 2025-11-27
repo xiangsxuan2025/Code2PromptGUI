@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Themes.Fluent;
 using System;
 
-namespace Code2PromptGUI
+namespace Code2LlmPrompt
 {
     internal sealed class Program
     {

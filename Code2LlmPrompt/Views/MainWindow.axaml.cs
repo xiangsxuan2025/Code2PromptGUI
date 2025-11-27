@@ -1,7 +1,7 @@
 using Avalonia.Controls;
-using Code2PromptGUI.ViewModels;
+using Code2LlmPrompt.ViewModels;
 
-namespace Code2PromptGUI.Views
+namespace Code2LlmPrompt.Views
 {
     public partial class MainWindow : Window
     {

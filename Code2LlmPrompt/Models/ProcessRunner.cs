@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Code2PromptGUI.Models
+namespace Code2LlmPrompt.Models
 {
     public class ProcessRunner
     {
