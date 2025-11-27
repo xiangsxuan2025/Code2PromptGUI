@@ -2,7 +2,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:vm="clr-namespace:Code2LlmPrompt.ViewModels"
 			 x:Class="Code2LlmPrompt.Views.Controls.OutputPanelControl"
-			 x:DataType="vm:MainViewModel" MinWidth="200">
+			 x:DataType="vm:MainViewModel">
 	<Grid RowDefinitions="Auto,60,Auto,*">
 		<!-- Generate Button -->
 		<StackPanel
@@ -10,12 +10,13 @@
 		Orientation="Horizontal"
 		Spacing="6"
 		Margin="0,0,0,5"
+		HorizontalAlignment="Center"
 		>
 			<Button
 			Content="🚀 Generate"
 			Command="{Binding GenerateCommand}"
 			Classes="primary-btn"
-			Width="100"
+			Width="120"
 			Height="28"
 			/>
 		</StackPanel>
@@ -33,7 +34,6 @@
 				FontFamily="Consolas, Menlo, Monaco, Courier New"
 				FontSize="10"
 				Height="60"
-				MaxHeight="60"
 				/>
 			</ScrollViewer>
 		</Border>
@@ -45,33 +45,33 @@
 					<ColumnDefinition Width="*" />
 					<ColumnDefinition Width="Auto" />
 				</Grid.ColumnDefinitions>
-
+				
 				<TextBlock
-				Text="Result"
-				Foreground="#00ff41"
-				FontSize="12"
-				FontWeight="Bold"
-				VerticalAlignment="Center"
+					Text="Result"
+					Foreground="#00ff41"
+					FontSize="12"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
 				/>
-
+				
 				<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="3">
 					<Button
-					Content="📋"
-					Command="{Binding CopyResultCommand}"
-					Classes="icon-btn"
-					Width="28"
-					Height="24"
-					FontSize="10"
-					ToolTip.Tip="Copy result to clipboard"
+						Content="📋"
+						Command="{Binding CopyResultCommand}"
+						Classes="icon-btn"
+						Width="28"
+						Height="24"
+						FontSize="10"
+						ToolTip.Tip="Copy result to clipboard"
 					/>
 					<Button
-					Content="💾"
-					Command="{Binding SaveResultCommand}"
-					Classes="icon-btn"
-					Width="28"
-					Height="24"
-					FontSize="10"
-					ToolTip.Tip="Save result to file"
+						Content="💾"
+						Command="{Binding SaveResultCommand}"
+						Classes="icon-btn"
+						Width="28"
+						Height="24"
+						FontSize="10"
+						ToolTip.Tip="Save result to file"
 					/>
 				</StackPanel>
 			</Grid>
