@@ -159,7 +159,6 @@
 		<Setter Property="FontSize" Value="10"/>
 	</Style>
 
-
 	<Style Selector="Button.secondary-btn:pointerover">
 		<Setter Property="Background" Value="#444455"/>
 		<Setter Property="Foreground" Value="#ffffff"/>
@@ -240,5 +239,22 @@
 
 	<Style Selector="BlurEffect.progress-blur">
 		<Setter Property="Radius" Value="8"/>
+	</Style>
+
+	<!-- 自定义标题栏按钮样式 -->
+	<Style Selector="Button.titlebar-btn">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Foreground" Value="#cccccc"/>
+		<Setter Property="BorderThickness" Value="0"/>
+		<Setter Property="Cursor" Value="Hand"/>
+	</Style>
+
+	<Style Selector="Button.titlebar-btn:pointerover">
+		<Setter Property="Background" Value="#333344"/>
+	</Style>
+
+	<Style Selector="Button.titlebar-btn.close-btn:pointerover">
+		<Setter Property="Background" Value="#e81123"/>
+		<Setter Property="Foreground" Value="#ffffff"/>
 	</Style>
 </Styles>

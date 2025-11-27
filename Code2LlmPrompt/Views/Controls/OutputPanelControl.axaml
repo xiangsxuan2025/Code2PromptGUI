@@ -52,7 +52,7 @@
 				IsReadOnly="True"
 				AcceptsReturn="True"
 				AcceptsTab="True"
-				TextWrapping="Wrap"
+				TextWrapping="WrapWithOverflow"
 				Classes="output-text"
 				FontFamily="Consolas, Menlo, Monaco, Courier New"
 				FontSize="10"
