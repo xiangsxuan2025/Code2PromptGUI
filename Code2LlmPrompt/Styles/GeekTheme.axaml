@@ -165,4 +165,11 @@
 		<Setter Property="Foreground" Value="#00ccff"/>
 		<Setter Property="FontSize" Value="11"/>
 	</Style>
+	<Style Selector="Border.progress-overlay">
+		<Setter Property="Background" Value="#CC1a1a2e"/>
+	</Style>
+
+	<Style Selector="BlurEffect.progress-blur">
+		<Setter Property="Radius" Value="8"/>
+	</Style>
 </Styles>

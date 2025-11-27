@@ -41,9 +41,6 @@
 	  <Compile Update="Views\Controls\FileSelectionControl.axaml.cs">
 	    <DependentUpon>FileSelectionControl.axaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\Controls\ProgressIndicatorControl.axaml.cs">
-	    <DependentUpon>ProgressIndicatorControl.axaml</DependentUpon>
-	  </Compile>
 	  <Compile Update="Views\Controls\OutputFormatControl.axaml.cs">
 	    <DependentUpon>OutputFormatControl.axaml</DependentUpon>
 	  </Compile>

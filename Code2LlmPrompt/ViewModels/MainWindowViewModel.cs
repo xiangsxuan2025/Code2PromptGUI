@@ -25,10 +25,10 @@ namespace Code2LlmPrompt.ViewModels
         private string _path = ".";
 
         [ObservableProperty]
-        private string _outputFileName = "";
+        private string _outputFileName = "code2prompt.txt";//指定文件名, 不加貌似会报错，code2prompt可能有bug
 
         [ObservableProperty]
-        private bool _clipboard = true;
+        private bool _clipboard = false;//默认会粘贴到剪贴板，特备指定了，反而会报错，code2prompt可能有bug
 
         [ObservableProperty]
         private string _includePatterns = "";
@@ -99,6 +99,9 @@ namespace Code2LlmPrompt.ViewModels
         [ObservableProperty]
         private string _toolStatus = "🔧 Tool: Ready";
 
+        [ObservableProperty]
+        private bool _isAdvancedMode;
+
         public ObservableCollection<string> OutputFormats { get; } = new()
         {
             "markdown", "json", "xml"
@@ -128,6 +131,29 @@ namespace Code2LlmPrompt.ViewModels
         public void SetMainWindow(Window window)
         {
             _mainWindow = window;
+        }
+
+        [RelayCommand]
+        private void ToggleAdvanced()
+        {
+            IsAdvancedMode = !IsAdvancedMode;
+
+            // 调整窗口大小
+            if (_mainWindow != null)
+            {
+                if (IsAdvancedMode)
+                {
+                    // 高级模式 - 更大的窗口
+                    _mainWindow.Width = 1200;
+                    _mainWindow.Height = 800;
+                }
+                else
+                {
+                    // 基础模式 - 较小的窗口
+                    _mainWindow.Width = 650;
+                    _mainWindow.Height = 500;
+                }
+            }
         }
 
         [RelayCommand]
@@ -244,15 +270,8 @@ namespace Code2LlmPrompt.ViewModels
             if (!string.IsNullOrEmpty(Path) && Path != ".")
                 args.Append($" {Path}");
 
-            // 暂时改为默认输出, 不加貌似会报错.
-            //// 输出文件
-            //if (!string.IsNullOrEmpty(OutputFile))
+            // 输出文件
             args.Append($" -O {OutputFileName}");
-
-            // 默认拷贝, 加这个参数会不明原因报错
-            // 剪贴板
-            //if (Clipboard)
-            //    args.Append(" -c");
 
             // 包含模式
             if (!string.IsNullOrEmpty(IncludePatterns))
@@ -260,7 +279,7 @@ namespace Code2LlmPrompt.ViewModels
                 foreach (var pattern in IncludePatterns.Split(new[] { '\n', '\r', ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (!string.IsNullOrWhiteSpace(pattern))
-                        args.Append($" -i {pattern.Trim()}");// 不需要用括号包起来
+                        args.Append($" -i {pattern.Trim()}");
                 }
             }
 
@@ -270,7 +289,7 @@ namespace Code2LlmPrompt.ViewModels
                 foreach (var pattern in ExcludePatterns.Split(new[] { '\n', '\r', ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     if (!string.IsNullOrWhiteSpace(pattern))
-                        args.Append($" -e {pattern.Trim()}");// 不需要用括号包起来
+                        args.Append($" -e {pattern.Trim()}");
                 }
             }
 
@@ -290,7 +309,7 @@ namespace Code2LlmPrompt.ViewModels
 
             // 模板
             if (!string.IsNullOrEmpty(Template))
-                args.Append($" -t {Template}"); // 不需要用括号包起来
+                args.Append($" -t {Template}");
 
             // 显示选项
             if (LineNumbers)

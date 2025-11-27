@@ -4,16 +4,17 @@
 			 x:Class="Code2LlmPrompt.Views.Controls.BasicSettingsControl"
 			 x:DataType="vm:MainViewModel">
 	<Border Classes="section">
-		<StackPanel Spacing="10">
+		<StackPanel Spacing="8">
 			<TextBlock Text="📁 Basic Settings" Classes="section-title" />
 
-			<StackPanel Spacing="8">
+			<StackPanel Spacing="6">
 				<TextBlock Text="Path to Analyze" Classes="label" />
 				<Grid ColumnDefinitions="*,Auto">
 					<TextBox
 					Text="{Binding Path}"
 					Watermark=". (current directory)"
 					Classes="input"
+					Height="32"
 					/>
 					<Button
 					Content="📁"
@@ -21,17 +22,20 @@
 					Margin="5,0,0,0"
 					Command="{Binding BrowsePathCommand}"
 					Classes="icon-btn"
+					Width="35"
+					Height="32"
 					/>
 				</Grid>
 			</StackPanel>
 
-			<StackPanel Spacing="8">
+			<StackPanel Spacing="6">
 				<TextBlock Text="Output File" Classes="label" />
 				<Grid ColumnDefinitions="*,Auto">
 					<TextBox
 					Text="{Binding OutputFileName}"
 					Watermark="- (stdout)"
 					Classes="input"
+					Height="32"
 					/>
 					<Button
 					Content="💾"
@@ -39,11 +43,13 @@
 					Margin="5,0,0,0"
 					Command="{Binding BrowseOutputCommand}"
 					Classes="icon-btn"
+					Width="35"
+					Height="32"
 					/>
 				</Grid>
-				<!-- 不明原因, 选上就报错 多个参数 -c
+
 				<CheckBox Content="Copy to Clipboard" IsChecked="{Binding Clipboard}"
-				Classes="checkbox"/>-->
+						  Classes="checkbox"/>
 			</StackPanel>
 		</StackPanel>
 	</Border>
