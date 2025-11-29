@@ -1,6 +1,6 @@
 <div align="center">
 
-# Code2Prompt GUI [中文](#cn)
+# Code2LlmPrompt [中文](#cn)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
@@ -59,7 +59,7 @@ MIT License - see [LICENSE.txt](LICENSE.txt) for details.
 ---
 <div align="center">
 
-# Code2Prompt GUI
+# Code2LlmPrompt
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple)
