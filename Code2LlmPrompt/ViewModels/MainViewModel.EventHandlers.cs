@@ -41,19 +41,32 @@ namespace Code2LlmPrompt.ViewModels
         /// 进程退出事件处理
         /// </summary>
         /// <param name="exitCode">退出代码</param>
-        private void OnProcessExited(int exitCode)
+        private async void OnProcessExited(int exitCode)
         {
             IsProcessing = false;
             Status = exitCode == 0 ? "Completed" : "Failed";
 
-            // 最终尝试读取输出文件
-            // todo 文件很大的话, 可能有内存问题
+            // 最终尝试读取输出文件，使用流式读取避免内存问题
             if (exitCode == 0 && File.Exists(OutputFileName))
             {
                 try
                 {
-                    ResultContent = File.ReadAllText(OutputFileName);
-                    Status = "Completed - Result ready";
+                    // 使用流式读取，限制最大文件大小
+                    const long maxFileSize = 10 * 1024 * 1024; // 10MB限制
+                    var fileInfo = new FileInfo(OutputFileName);
+
+                    if (fileInfo.Length > maxFileSize)
+                    {
+                        // 大文件只读取部分内容并提示
+                        ResultContent = await ReadFileWithLimitAsync(OutputFileName, maxFileSize);
+                        Status = "Completed - File too large, showing first 10MB";
+                    }
+                    else
+                    {
+                        // 小文件正常读取
+                        ResultContent = await File.ReadAllTextAsync(OutputFileName);
+                        Status = "Completed - Result ready";
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -61,5 +74,45 @@ namespace Code2LlmPrompt.ViewModels
                 }
             }
         }
+        /// <summary>
+        /// 限制大小的文件读取方法
+        /// </summary>
+        private async Task<string> ReadFileWithLimitAsync(string filePath, long maxSize)
+        {
+            using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+            // 限制读取大小
+            var sizeToRead = Math.Min(maxSize, fileStream.Length);
+            var buffer = new byte[sizeToRead];
+
+            await fileStream.ReadAsync(buffer, 0, (int)sizeToRead);
+
+            var result = System.Text.Encoding.UTF8.GetString(buffer);
+
+            if (fileStream.Length > maxSize)
+            {
+                result += $"\n\n[File truncated. Total size: {FormatFileSize(fileStream.Length)}]";
+            }
+
+            return result;
+
+            /// 格式化文件大小为可读字符串
+            string FormatFileSize(long bytes)
+            {
+                string[] sizes = { "B", "KB", "MB", "GB" };
+                double len = bytes;
+                int order = 0;
+
+                while (len >= 1024 && order < sizes.Length - 1)
+                {
+                    order++;
+                    len /= 1024;
+                }
+
+                return $"{len:0.##} {sizes[order]}";
+            }
+        }
     }
+
 }
+

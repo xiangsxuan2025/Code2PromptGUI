@@ -140,7 +140,7 @@ namespace Code2LlmPrompt.ViewModels
             {
                 try
                 {
-                    await System.IO.File.WriteAllTextAsync(file, ResultContent);
+                    System.IO.File.Copy(OutputFileName,file);
                     Status = $"Result saved to {System.IO.Path.GetFileName(file)}";
                 }
                 catch (Exception ex)
