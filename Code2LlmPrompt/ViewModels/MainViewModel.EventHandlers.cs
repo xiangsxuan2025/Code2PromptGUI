@@ -26,6 +26,7 @@ namespace Code2LlmPrompt.ViewModels
         private void OnOutputReceived(string data)
         {
             Output += data + Environment.NewLine;
+            Debug.WriteLine(data);
         }
 
         /// <summary>
@@ -35,6 +36,7 @@ namespace Code2LlmPrompt.ViewModels
         private void OnErrorReceived(string data)
         {
             Output += $"ERROR: {data}{Environment.NewLine}";
+            Debug.WriteLine(data);
         }
 
         /// <summary>
@@ -45,21 +47,26 @@ namespace Code2LlmPrompt.ViewModels
         {
             IsProcessing = false;
             Status = exitCode == 0 ? "Completed" : "Failed";
-
+            // 哪怕只有1M的文件,也会导致内存增长为300M
+            // todo: 这里可以排查一下底层原因
+            GC.Collect();
             // 最终尝试读取输出文件，使用流式读取避免内存问题
             if (exitCode == 0 && File.Exists(OutputFileName))
             {
                 try
                 {
+                    // 哪怕只有1M的文件,也会导致内存增长为300M
+                    // todo: 这里可以排查一下底层原因
                     // 使用流式读取，限制最大文件大小
-                    const long maxFileSize = 10 * 1024 * 1024; // 10MB限制
+                    const long maxFileSizeMB = 1; // 1MB限制
+                    const long maxFileSize = maxFileSizeMB * 1024 * 1024; // 1MB限制
                     var fileInfo = new FileInfo(OutputFileName);
 
                     if (fileInfo.Length > maxFileSize)
                     {
                         // 大文件只读取部分内容并提示
                         ResultContent = await ReadFileWithLimitAsync(OutputFileName, maxFileSize);
-                        Status = "Completed - File too large, showing first 10MB";
+                        Status = $"Completed - File too large, showing first {maxFileSizeMB}MB";
                     }
                     else
                     {
