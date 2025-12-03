@@ -26,20 +26,6 @@ namespace Code2LlmPrompt.ViewModels
         private void OnOutputReceived(string data)
         {
             Output += data + Environment.NewLine;
-
-            // 如果输出文件存在，读取其内容到ResultContent
-            // todo 文件很大的话, 可能有内存问题
-            if (File.Exists(OutputFileName))
-            {
-                try
-                {
-                    ResultContent = File.ReadAllText(OutputFileName);
-                }
-                catch (Exception ex)
-                {
-                    Output += $"Error reading output file: {ex.Message}{Environment.NewLine}";
-                }
-            }
         }
 
         /// <summary>
